@@ -1,0 +1,11 @@
+body {
+    background-color: darkslategray;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation {
+    background-color: #165b42;
+    width: 100vw;
+    height: 15vh;
+}
