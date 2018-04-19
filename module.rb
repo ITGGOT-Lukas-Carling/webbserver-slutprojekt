@@ -24,6 +24,11 @@ module TodoDB
         return request
     end
 
+    def find_password_for_user(username)
+        db = db_connect()
+        password = db.execute("SELECT password FROM users WHERE username IS '#{username}'")
+        return password
+    end
 
 
 

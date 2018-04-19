@@ -1,0 +1,10 @@
+<%if session[:logged] != true%>
+    <form action="/login" method="POST">
+        <input type="text" name="log-username" placeholder="Username">
+        <input type="password" name="log-password" placeholder="Password">
+        <input type="submit" value="Login">
+<%end%>
+<%if session[:logged]%>
+    <p> Hello <%=username%> </p>
+    <p> <%=log_error%> </p>
+<%end%>

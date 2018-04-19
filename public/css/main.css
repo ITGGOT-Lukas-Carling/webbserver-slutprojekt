@@ -9,3 +9,45 @@ body {
     width: 100vw;
     height: 15vh;
 }
+
+.navigationtext {
+    color:white;
+    padding: 1vw;
+}
+
+.chat {
+    height: 50vh;
+    width: 60vh;
+    padding: 5vh;
+    border: 5px solid black;
+    overflow: scroll;
+    background-color: white; 
+}
+
+.chatwindow {
+    margin-left: 10vh;
+    margin-top:  30vh;
+}
+
+.non-border {
+    border: 0;
+}
+
+.textbox {
+    width: 30vw;
+    height: 10vh;
+    display: flex;
+    background-color: hotpink;
+}
+
+.chatroom {
+    display:flex;
+    height: 60vh;
+    width: 70vw;
+    padding: 5vh;
+}
+
+h1 {
+    margin:0;
+    padding:0;
+}
