@@ -1,7 +1,7 @@
 require_relative './module.rb'
 
 class App < Sinatra::Base
-
+	set :default_encoding, 'utf-8'
 	log_username = ""
 	log_error= ""
 	enable :sessions
@@ -66,6 +66,15 @@ class App < Sinatra::Base
 				redirect('/register')
 		end
 		redirect('/register')
+	end
+
+	get('/search/?') do
+	end
+
+	get('/search/:username') do
+		username = params[:username].encode("UTF-8")
+		userinformation = user_compare(username)
+		erb(:search, locals:{userinformation:userinformation[0]})
 	end
 
 	
