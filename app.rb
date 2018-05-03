@@ -79,9 +79,9 @@ class App < Sinatra::Base
 	end
 
 	post('/forceadd') do
-		
+
 		add_friend(user_id(session[:username]), user_id(params[:username]))
-		redirect('/search/')
+		redirect('/search/'+params[:username])
 	end
 
 	get('/search/:username') do
