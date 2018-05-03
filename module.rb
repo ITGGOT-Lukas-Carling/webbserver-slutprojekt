@@ -30,4 +30,30 @@ module TodoDB
         return password
     end
 
+    def user_id(username)
+        db = db_connect()
+        user_id = db.execute("SELECT id FROM users WHERE username is ?", [username])
+        return user_id[0]
+    end
+
+    def add_friend(user_1, user_2)
+        db = db_connect()
+        db.execute("INSERT INTO user_relations(user_1, user_2, relation_state) VALUES (?,?,1)", [user_1, user_2])
+    end
+
+    def user_relation(user_1, user_2) 
+        db = db_connect()
+        result = db.execute("SELECT relation_state FROM user_relations WHERE (user_1 = ? OR user_2 = ?) AND (user_1 = ? OR user_2 = ?)", [user_1, user_1, user_2, user_2])
+        print result
+        if result.empty? == false
+            if result[0][0]==1
+                return "This user is your friend"
+            end
+        else
+            return "This user is not your friend"
+        end
+        
+        
+    end
+
 end

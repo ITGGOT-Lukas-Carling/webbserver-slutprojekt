@@ -1,3 +1,18 @@
+<p>Username: 
+<%=userinformation[1]%>
+</p>
+
 <p>Nickname: 
 <%=userinformation[2]%>
 </p>
+
+<p>
+<%=relation%>
+</p>
+
+<%if relation=="This user is not your friend"%>
+    <form action="/forceadd" method="POST">
+        <input type="hidden" name="username" value="<%=username%>">
+        <input type="submit" value="Force add this user">
+    </form>
+<%end%>

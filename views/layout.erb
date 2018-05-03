@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./css/main.css"> <!--Linking css in layout to prevent multiple linkings -->
-    <script src="./js/main.js"></script> <!--Linking script in layout to prevent multiple linkings -->
+    <link rel="stylesheet" href="/css/main.css"> <!--Linking css in layout to prevent multiple linkings -->
+    <script src="/js/main.js"></script> <!--Linking script in layout to prevent multiple linkings -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Babble - 3.0</title>
@@ -14,6 +14,10 @@
         <a href="/login" class="navigationtext"> Login </a>
         <a href="/register" class="navigationtext"> Register </a>
         <a href="/chat" class="navigationtext"> Chat </a>
+        
+        <form action="/logout" method="POST">
+            <input type="submit" value="LOGOUT">
+        </form>
     </div>
     <%=yield%>
 </body>

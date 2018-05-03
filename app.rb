@@ -3,7 +3,7 @@ require_relative './module.rb'
 class App < Sinatra::Base
 	set :default_encoding, 'utf-8'
 	log_username = ""
-	log_error= ""
+	log_error = ""
 	enable :sessions
 	set :server, 'thin'
 	set :sockets, []
@@ -14,12 +14,12 @@ class App < Sinatra::Base
 	end
 
 	get ('/register') do
-		erb(:register)
+		erb(:register, locals:{login:session[:logged]})
 	end
 
 
 	get('/login') do
-		erb(:login)
+		erb(:login, locals:{username:session[:username], log_error:log_error})
 	end
 
 	post('/login') do
@@ -47,6 +47,12 @@ class App < Sinatra::Base
 		end
 	end
 
+	post('/logout') do
+		log_username = ""
+		session.destroy
+		redirect('/')
+	end
+
 	post('/register') do
 
 		username = params[:username]
@@ -69,12 +75,20 @@ class App < Sinatra::Base
 	end
 
 	get('/search/?') do
+		erb(:search, locals:{userinformation:[""], relation:""})
+	end
+
+	post('/forceadd') do
+		
+		add_friend(user_id(session[:username]), user_id(params[:username]))
+		redirect('/search/')
 	end
 
 	get('/search/:username') do
 		username = params[:username].encode("UTF-8")
 		userinformation = user_compare(username)
-		erb(:search, locals:{userinformation:userinformation[0]})
+		relation = user_relation(user_id(session[:username]), user_id(username))
+		erb(:search, locals:{userinformation:userinformation[0], relation:relation, username:username})
 	end
 
 	
