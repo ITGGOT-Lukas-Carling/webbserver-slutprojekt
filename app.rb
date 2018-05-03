@@ -107,8 +107,10 @@ class App < Sinatra::Base
 			  settings.sockets << ws
 			end
 			ws.onmessage do |msg|
-			  send = session[:username].to_s + ": " + msg
+			  if msg.include?("<") == false && msg.include?(">") == false
+			  send = session[:username].to_s + ": " + msg.to_s
 			  EM.next_tick { settings.sockets.each{|s| s.send(send) } }
+			  end
 			end
 			ws.onclose do
 			  warn("websocket closed")
